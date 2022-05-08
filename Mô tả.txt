@@ -1,0 +1,37 @@
+Chức năng add (Hán Ngọc Duy).
+	- Khi người dùng submit form POST lên thành công.
+	- Trong addProduct():
+		+ Phương thức addAttribute() được sử dụng để khởi tại một product mới model. 
+	- Khi người dùng submit form POST lên thành công.	
+	- Trong save():
+		+ Dữ liệu submit nếu hợp lệ sẽ được lưu vào csdl và người dùng được redirect 
+		sang một request khác bằng addFlashAttribute()(tránh re-submit) và trở về 
+		trang hiện thông tin sản phẩm.
+		+ Nếu dữ liệu không hợp lệ sẽ trở lại addProduct().
+
+Chức năng edit (Đào Công Tân - B19DCCN570).
+	- Mỗi dòng sản phẩm sẽ có nút Edit riêng.
+	- Khi nhấn edit, hệ thống sẽ nhận request từ người dùng theo phương thức GET và 
+	  truyền tham số code là code của sản phẩm muốn sửa.
+	- Khi đó trong ShowProductController.java, hàm editProduct sẽ được thực hiện vì
+	  có GetMapping("/edit") trùng với request từ người dùng.
+	- Trong hàm editProduct, tìm product có code trùng với code mà người dùng yêu cầu
+	  nếu có sẽ add attribute product vào model.
+	- Sau đó hiển thị editProduct.html.
+	- Form editProduct.html hiện ra cho phép sửa code, description, price của product.
+	- Sau khi nhập xong, chọn nút "Update Product".
+	- Vì khi nhấn nút "Update Product". form edit trong editProduct sẽ được submit với 
+	  object được đóng gói là product và action = saveUpdate.
+	- Hàm saveUpdate trong ShowProductController.java sẽ được thực hiện.
+	- Tại đây, nếu có lỗi về validation thì sẽ trả về trang editProduct.html và hiển thị lỗi tương ứng.
+	- Nếu không lỗi, lưu lại thông tin product vào database rồi chuyển hướng hiển thị về "/show"
+	  giúp trở về trang danh sách sản phẩm.
+
+Chức năng delete : Đỗ Quốc Khánh - B19DCCN354
+	- Ấn vào nút Delete ở bên cạnh sản phẩm. 
+	- Hàm preDeleteProduct được thực hiện. FindByID(code) trong hàm preDeleteProduct sẽ tham chiếu tìm xem trong database có sp như thế hay không, có sẽ chuyển sang bước tiếp theo.
+	- Người dùng sẽ được chuyển sang trang khác với đường dẫn mang Code của sản phẩm để xác nhận có xóa hay không 
+	- Hiển trị confirm.html
+	- Chọn YES thì sp sẽ bị xóa khỏi database (hàm deleteProduct chạy)
+		deleteByID(code) sẽ xóa sản phẩm theo code 
+	- Chọn NO màn hình sẽ quay lại list product (chuyển về product_details.html)

@@ -49,7 +49,7 @@ public class ShowProductController {
 		return "addProduct";
 	}
 
-	@RequestMapping(value = "/edit", method = RequestMethod.GET)
+	@GetMapping("/edit")
 	public String editProduct(@RequestParam("code") String code, Model model) {
 		Optional<Product> productX = productRepo.findById(code);
 		productX.ifPresent(product -> model.addAttribute("product", product));

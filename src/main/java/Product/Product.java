@@ -21,6 +21,6 @@ public class Product {
 	private String code;
 	@NotBlank(message = "Vui lòng nhập description!")
 	private String description;
-	@Min(value = 0, message = "Nhập lớn hơn 0!")
+	@Min(value = 1, message = "Nhập lớn hơn 0!")
 	private int price;
 }
